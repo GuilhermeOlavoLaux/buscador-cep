@@ -1,7 +1,15 @@
 import React from 'react'
-
+import FindCep from './components/FindCep'
 function App() {
-  return <>aaaaaa</>
+  return (
+    <>
+
+    <FindCep></FindCep>
+    
+    
+    </>
+
+  ) 
 }
 
 export default App
