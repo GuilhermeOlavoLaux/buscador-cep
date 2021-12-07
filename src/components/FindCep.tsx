@@ -24,29 +24,19 @@ export default function RenderCep() {
         neighborhood: cepRequest.data[0].bairro,
         cep: cepRequest.data[0].cep
       })
+      window.alert(`
+      CEP: ${ cepRequest.data[0].cep}
+      Município: ${ cepRequest.data[0].localidade}
+      Logradouro: ${ cepRequest.data[0].logradouro}
+      Bairro: ${ cepRequest.data[0].bairro}`)
     }
-  }
-
-  // setFields({ uf: '', city: '', street: '', neighborhood: '', cep: '' })
-
-  useEffect(() => {
-    fetchCep()
-  }, [])
-
-  function mostrar() {
-    fetchCep()
-    window.alert(`
-    CEP: ${fields.cep}
-    Município: ${fields.city}
-    Logradouro: ${fields.street}
-    Bairro: ${fields.neighborhood}`)
   }
 
   return (
     <>
       <Header />
       <Breadcrumb>
-        <Breadcrumb.Item href='/home'>Início</Breadcrumb.Item>
+        <Breadcrumb.Item href='/'>Início</Breadcrumb.Item>
         <Breadcrumb.Item active>Buscar CEP</Breadcrumb.Item>
       </Breadcrumb>
 
@@ -80,7 +70,6 @@ export default function RenderCep() {
       </div>
       <button>Voltar</button>
       <button onClick={() => fetchCep()}>teste</button>
-      <button onClick={() => mostrar()}>mostrar</button>
     </>
   )
 }

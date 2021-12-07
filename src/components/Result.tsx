@@ -71,7 +71,7 @@ export default function Result() {
       <Header></Header>
 
       <Breadcrumb>
-        <Breadcrumb.Item href='/home'>Início</Breadcrumb.Item>
+        <Breadcrumb.Item href='/'>Início</Breadcrumb.Item>
         <Breadcrumb.Item href='/findAdress'>Buscar Endereço</Breadcrumb.Item>
         <Breadcrumb.Item active>CEP {params.cep}</Breadcrumb.Item>
       </Breadcrumb>

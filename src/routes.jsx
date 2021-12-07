@@ -9,7 +9,7 @@ export default function AppRoutes() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/home' element={<InitialPage />} />
+        <Route exact path='/' element={<InitialPage />} />
         <Route exact path='/findCep' element={<FindCep />} />
         <Route exact path='/findAdress' element={<FindAdress />} />
         <Route exact path='/result/:cep' element={<Result/>} />

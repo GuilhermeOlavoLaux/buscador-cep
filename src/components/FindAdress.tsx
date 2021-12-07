@@ -24,7 +24,7 @@ export default function FindAdress() {
       <Header></Header>
 
       <Breadcrumb>
-        <Breadcrumb.Item href='/home'>Início</Breadcrumb.Item>
+        <Breadcrumb.Item href='/'>Início</Breadcrumb.Item>
         <Breadcrumb.Item active>Buscar Endereço</Breadcrumb.Item>
       </Breadcrumb>
 
