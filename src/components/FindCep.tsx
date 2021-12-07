@@ -1,6 +1,7 @@
-//@ts-ignore
 import { ChangeEvent, useState } from 'react'
 import { api } from '../api/apiRoutes'
+import Header from './Header'
+import { Breadcrumb } from 'react-bootstrap'
 
 interface IFields {
   uf: string
@@ -26,18 +27,15 @@ export default function RenderCep() {
   }
 
   return (
-    //@ts-ignore
     <>
-      <h1>RenderCep</h1>
+      <Header />
+      <Breadcrumb>
+        <Breadcrumb.Item href='/home'>Início</Breadcrumb.Item>
+        <Breadcrumb.Item active>Buscar CEP</Breadcrumb.Item>
+      </Breadcrumb>
+
+      
       <div className='inputs-container'>
-        <input
-          type='text'
-          placeholder='CEP'
-          value={fields.cep}
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            setFields({ ...fields, cep: event.target.value })
-          }
-        />
 
         <input
           type='text'
@@ -53,7 +51,7 @@ export default function RenderCep() {
 
         <input
           type='text'
-          placeholder='Cidade'
+          placeholder='Município'
           value={fields.city}
           onChange={(event: ChangeEvent<HTMLInputElement>) =>
             setFields({ ...fields, city: event.target.value })
@@ -74,19 +72,10 @@ export default function RenderCep() {
             setFieldsByCep(fields.uf, fields.city, fields.street)
           }}
         />
-
-        <input
-          type='text'
-          placeholder='Bairro'
-          value={fields.neighborhood}
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            setFields({ ...fields, neighborhood: event.target.value })
-          }
-          onBlur={() => {
-            setFieldsByCep(fields.uf, fields.city, fields.street)
-          }}
-        />
       </div>
+
+      <button>Voltar</button>
+      <button>Pesquisar</button>
     </>
   )
 }

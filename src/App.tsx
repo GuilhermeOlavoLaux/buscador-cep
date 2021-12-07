@@ -1,15 +1,11 @@
 import React from 'react'
-import FindCep from './components/FindCep'
+import AppRoutes from './routes'
 function App() {
   return (
     <>
-
-    <FindCep></FindCep>
-    
-    
+      <AppRoutes />
     </>
-
-  ) 
+  )
 }
 
 export default App
