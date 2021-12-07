@@ -1,0 +1,87 @@
+.home-container {
+  margin-left: 20px;
+}
+.home-container .buttons-container {
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.find-adress-container {
+  margin-left: 20px;
+}
+.find-adress-container p {
+  color: red;
+}
+.find-adress-container input {
+  margin-bottom: 20px;
+}
+.find-adress-container button {
+  margin-right: 20px;
+}
+
+.result-container {
+  margin-left: 20px;
+}
+
+.adress-container h5 {
+  font-size: 14px;
+}
+.adress-container p {
+  border: 2px solid gray;
+  width: 300px;
+}
+
+.buttons-container button {
+  margin-right: 20px;
+}
+
+.find-cep-container {
+  margin-left: 20px;
+}
+.find-cep-container button {
+  margin-right: 20px;
+}
+.find-cep-container .uf-field {
+  width: 400px;
+  margin-bottom: 20px;
+}
+.find-cep-container .inputs-container {
+  display: flex;
+  flex-direction: column;
+}
+.find-cep-container .inputs-container input {
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.header-container {
+  width: 80%;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-container h1 {
+  margin-left: 20px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-container p {
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.year {
+  margin-left: 20px;
+}
+
+.buttonStyle {
+  border: black solid 1px;
+  border-radius: 6px;
+}/*# sourceMappingURL=index.css.map */

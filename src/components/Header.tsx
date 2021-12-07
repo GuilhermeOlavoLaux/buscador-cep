@@ -15,8 +15,9 @@ export default function Header() {
           <p onClick={() => navigate(`/findAdress`)}>Buscar Endereço</p>
           <p onClick={() => navigate(`/findCep`)}>Buscar CEP</p>
         </div>
-        <hr />
       </div>
+
+      <hr></hr>
     </>
   )
 }

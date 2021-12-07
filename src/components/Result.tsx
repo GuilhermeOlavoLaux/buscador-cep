@@ -56,8 +56,12 @@ export default function Result() {
           </div>
 
           <div className='buttons-container'>
-            <button onClick={() => navigate('/findAdress')}>Nova Busca</button>
-            <button onClick={() => window.print()}>Imprimir</button>
+            <button onClick={() => navigate('/findAdress')} className='buttonStyle'>
+              Nova Busca
+            </button>
+            <button onClick={() => window.print()} className='buttonStyle'>
+              Imprimir
+            </button>
           </div>
         </>
       )
@@ -70,14 +74,15 @@ export default function Result() {
     <>
       <Header></Header>
 
-      <Breadcrumb>
-        <Breadcrumb.Item href='/'>Início</Breadcrumb.Item>
-        <Breadcrumb.Item href='/findAdress'>Buscar Endereço</Breadcrumb.Item>
-        <Breadcrumb.Item active>CEP {params.cep}</Breadcrumb.Item>
-      </Breadcrumb>
+      <div className='result-container'>
+        <Breadcrumb>
+          <Breadcrumb.Item href='/'>Início</Breadcrumb.Item>
+          <Breadcrumb.Item href='/findAdress'>Buscar Endereço</Breadcrumb.Item>
+          <Breadcrumb.Item active>CEP {params.cep}</Breadcrumb.Item>
+        </Breadcrumb>
 
-      {validation()}
-
+        {validation()}
+      </div>
       <Footer></Footer>
     </>
   )

@@ -1,11 +1,15 @@
 import Header from './Header'
 import Footer from './Footer'
+import { useNavigate } from 'react-router-dom'
 
 export default function InitialPage() {
+  const navigate = useNavigate()
+
   return (
     <>
       <Header />
-      <article>
+
+      <article className='home-container'>
         <h1>Bem vindo ao BuscadorCEP!</h1>
 
         <p>
@@ -20,9 +24,15 @@ export default function InitialPage() {
 
         <p>Aproveite! 😊</p>
 
-        <button>Bucar Endereço</button>
+        <div className='buttons-container'>
+          <button onClick={() => navigate(`/findAdress`)} className='buttonStyle'>
+            Bucar Endereço
+          </button>
 
-        <button>Bucar CEP</button>
+          <button onClick={() => navigate(`/findCep`)} className='buttonStyle'>
+            Bucar CEP
+          </button>
+        </div>
       </article>
 
       <Footer></Footer>
