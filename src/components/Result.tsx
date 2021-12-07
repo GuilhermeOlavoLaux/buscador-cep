@@ -21,7 +21,7 @@ export default function Result() {
   const params = useParams()
   const navigate = useNavigate()
 
-  async function fetchCep() {
+  async function fetchAdress() {
     const { data } = await api.get(`/${params.cep}/json/`)
     if (data) {
       setFields({
@@ -35,7 +35,7 @@ export default function Result() {
   }
 
   useEffect(() => {
-    fetchCep()
+    fetchAdress()
   }, [])
 
   function validation() {
