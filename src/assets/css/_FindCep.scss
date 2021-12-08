@@ -1,22 +1,22 @@
-.find-cep-container{
-    margin-left: 20px;
+.find-cep-container {
+  margin-left: 20px;
 
-    button{
-        margin-right: 20px;
+  button {
+    margin-right: 20px;
+  }
+
+  .bootstrap-field {
+    width: 400px;
+    margin-bottom: 20px;
+  }
+
+  .inputs-container {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      width: 400px;
+      margin-bottom: 20px;
     }
-
-    .uf-field{
-        width: 400px;
-        margin-bottom: 20px;
-    }
-
-    .inputs-container{
-        display: flex;
-        flex-direction: column;
-
-        input{
-            width: 400px;
-            margin-bottom: 20px;
-        }
-    }
+  }
 }

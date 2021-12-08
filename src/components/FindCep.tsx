@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, useEffect } from 'react'
-import { api } from '../api/apiRoutes'
+import { findCep, districtsByUF } from '../api/apiRoutes'
 import Header from './Header'
 import { Breadcrumb, Form } from 'react-bootstrap'
 import Footer from './Footer'
@@ -15,12 +15,12 @@ interface IFields {
 
 export default function RenderCep() {
   const [fields, setFields] = useState({} as IFields)
+  const [cities, setCities] = useState([])
   const navigate = useNavigate()
 
   async function fetchCep() {
-    console.log(fields)
-    const cepRequest = await api.get(`${fields.uf}/${fields.city}/${fields.street}/json/`)
-    if (cepRequest) {
+    const cepRequest = await findCep.get(`${fields.uf}/${fields.city}/${fields.street}/json/`)
+    if (cepRequest.data.length !== 0) {
       setFields({
         uf: cepRequest.data[0].uf,
         city: cepRequest.data[0].localidade,
@@ -28,16 +28,41 @@ export default function RenderCep() {
         neighborhood: cepRequest.data[0].bairro,
         cep: cepRequest.data[0].cep
       })
+
       window.alert(`
-      CEP: ${cepRequest.data[0].cep}
-      Município: ${cepRequest.data[0].localidade}
-      Logradouro: ${cepRequest.data[0].logradouro}
-      Bairro: ${cepRequest.data[0].bairro}`)
+        CEP: ${cepRequest.data[0].cep}
+        Município: ${cepRequest.data[0].localidade}
+        Logradouro: ${cepRequest.data[0].logradouro}
+        Bairro: ${cepRequest.data[0].bairro}`)
+    }
+  }
+
+  async function fetchCities(uf: string) {
+    const citiesRequest = await districtsByUF.get(`${uf}/municipios`)
+
+    if (citiesRequest) {
+      const citiesFounded = citiesRequest.data.map((element: any) => {
+        return element.nome
+      })
+      setCities(citiesFounded)
+    }
+  }
+
+  function renderCitiesOptions() {
+    if (cities) {
+      return cities.map((city: any) => {
+        return (
+          <>
+            <option value={city}>{city}</option>
+          </>
+        )
+      })
     }
   }
 
   function renderUfOptions() {
     const ufs = [
+      'Selecionar Uf:',
       'RO',
       'AC',
       'AM',
@@ -75,6 +100,15 @@ export default function RenderCep() {
     })
   }
 
+  function formDisabled() {
+    console.log('aaa')
+    if (!fields.uf) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
     <>
       <div className='find-cep-container'>
@@ -84,16 +118,32 @@ export default function RenderCep() {
           <Breadcrumb.Item active>Buscar CEP</Breadcrumb.Item>
         </Breadcrumb>
 
-        <div className='inputs-container'>
-          <input
-            type='text'
-            placeholder='Município'
-            value={fields.city}
-            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              setFields({ ...fields, city: event.target.value })
-            }
-          />
+        <Form.Group controlId='formBasicSelect' className='bootstrap-field'>
+          <Form.Control
+            as='select'
+            onChange={(event) => {
+              setFields({ ...fields, uf: event.target.value })
+              fetchCities(event.target.value)
+            }}
+          >
+            {renderUfOptions()}
+          </Form.Control>
+        </Form.Group>
 
+        <Form.Group controlId='formBasicSelect' className='bootstrap-field'>
+          <Form.Control
+            disabled={formDisabled()}
+            as='select'
+            onChange={(event) => {
+              setFields({ ...fields, city: event.target.value })
+            }}
+          >
+            <option>Município:</option>
+            {renderCitiesOptions()}
+          </Form.Control>
+        </Form.Group>
+
+        <div className='inputs-container'>
           <input
             type='text'
             placeholder='Rua'
@@ -102,24 +152,12 @@ export default function RenderCep() {
               setFields({ ...fields, street: event.target.value })
             }
           />
-
-          <Form.Group controlId='formBasicSelect'>
-            <Form.Label>Select Norm Type</Form.Label>
-            <Form.Control
-              as='select'
-              onChange={(event) => {
-                setFields({ ...fields, uf: event.target.value })
-              }}
-            >
-              {renderUfOptions()}
-            </Form.Control>
-          </Form.Group>
         </div>
         <button className='buttonStyle' onClick={() => navigate(-1)}>
           Voltar
         </button>
         <button onClick={() => fetchCep()} className='buttonStyle'>
-          teste
+          Buscar
         </button>
       </div>
 

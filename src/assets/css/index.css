@@ -43,7 +43,7 @@
 .find-cep-container button {
   margin-right: 20px;
 }
-.find-cep-container .uf-field {
+.find-cep-container .bootstrap-field {
   width: 400px;
   margin-bottom: 20px;
 }

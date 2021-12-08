@@ -1,8 +1,11 @@
-import axios from "axios";
+import axios from 'axios'
 
-const api = axios.create({
-    baseURL: 'https://viacep.com.br/ws/'
+const findCep = axios.create({
+  baseURL: 'https://viacep.com.br/ws/'
 })
 
+const districtsByUF = axios.create({
+  baseURL: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/'
+})
 
-export  {api};
+export { findCep, districtsByUF }

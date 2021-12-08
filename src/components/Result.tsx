@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { api } from '../api/apiRoutes'
+import { findCep } from '../api/apiRoutes'
 import { Breadcrumb } from 'react-bootstrap'
 
 import Header from './Header'
@@ -22,7 +22,7 @@ export default function Result() {
   const navigate = useNavigate()
 
   async function fetchAdress() {
-    const { data } = await api.get(`/${params.cep}/json/`)
+    const { data } = await findCep.get(`/${params.cep}/json/`)
     if (data) {
       setFields({
         ...fields,
