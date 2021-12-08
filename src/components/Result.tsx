@@ -17,12 +17,14 @@ interface IFields {
 
 export default function Result() {
   const [fields, setFields] = useState({} as IFields)
+  const [loading, setLoading] = useState(false)
 
   const params = useParams()
   const navigate = useNavigate()
 
   async function fetchAdress() {
     const { data } = await findCep.get(`/${params.cep}/json/`)
+    setLoading(true)
     if (data) {
       setFields({
         ...fields,
@@ -31,6 +33,7 @@ export default function Result() {
         street: data.logradouro,
         neighborhood: data.bairro
       })
+      setLoading(false)
     }
   }
 
@@ -66,7 +69,9 @@ export default function Result() {
         </>
       )
     } else {
-      return <h1>O CEP digitado não existe, tente novamente</h1>
+      const variavel = loading ? <h1>O CEP digitado não existe, tente novamente</h1> : <p> </p>;
+
+      return variavel
     }
   }
 

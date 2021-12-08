@@ -31,6 +31,7 @@
 .adress-container p {
   border: 2px solid gray;
   width: 300px;
+  min-height: 25px;
 }
 
 .buttons-container button {

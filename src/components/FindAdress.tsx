@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'
 
 import { Breadcrumb } from 'react-bootstrap'
 
+import validateCpf from '../utils/validators'
 import Header from './Header'
 import Footer from './Footer'
-
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 export default function FindAdress() {
   const [cep, setCep] = useState('')
 
@@ -16,11 +18,26 @@ export default function FindAdress() {
   }
 
   const handleFindClick = (cep: string) => {
-    navigate(`/result/${cep}`)
+    if (validateAll()) {
+      navigate(`/result/${cep}`)
+    }
+  }
+  function validateAll() {
+    if (!cep) {
+      toast.error('Insira um cep válido')
+      return false
+    } else if (!validateCpf(cep)) {
+      toast.error('Insira um cep válido')
+      return false
+    } else {
+      return true
+    }
   }
 
   return (
     <>
+      <ToastContainer />
+
       <Header></Header>
       <div className='find-adress-container'>
         <Breadcrumb>

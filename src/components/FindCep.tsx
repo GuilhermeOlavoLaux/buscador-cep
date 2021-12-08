@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { findCep, districtsByUF } from '../api/apiRoutes'
 import Header from './Header'
 import { Breadcrumb, Form } from 'react-bootstrap'
@@ -85,36 +85,7 @@ export default function RenderCep() {
   }
 
   function renderUfOptions() {
-    const ufs = [
-      'Selecionar Uf:',
-      'RO',
-      'AC',
-      'AM',
-      'RR',
-      'PA',
-      'AP',
-      'TO',
-      'MA',
-      'PI',
-      'CE',
-      'RN',
-      'PB',
-      'PE',
-      'AL',
-      'SE',
-      'BA',
-      'MG',
-      'ES',
-      'RJ',
-      'SP',
-      'PR',
-      'SC',
-      'RS',
-      'MS',
-      'MT',
-      'GO',
-      'DF'
-    ]
+    const ufs=["Selecionar Uf:","RO","AC","AM","RR","PA","AP","TO","MA","PI","CE","RN","PB","PE","AL","SE","BA","MG","ES","RJ","SP","PR","SC","RS","MS","MT","GO","DF"];
     return ufs.map((Uf) => {
       return (
         <>
