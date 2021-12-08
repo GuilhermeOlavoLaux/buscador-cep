@@ -5,6 +5,8 @@ import { Breadcrumb, Form } from 'react-bootstrap'
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 interface IFields {
   uf: string
   city: string
@@ -19,21 +21,43 @@ export default function RenderCep() {
   const navigate = useNavigate()
 
   async function fetchCep() {
-    const cepRequest = await findCep.get(`${fields.uf}/${fields.city}/${fields.street}/json/`)
-    if (cepRequest.data.length !== 0) {
-      setFields({
-        uf: cepRequest.data[0].uf,
-        city: cepRequest.data[0].localidade,
-        street: cepRequest.data[0].logradouro,
-        neighborhood: cepRequest.data[0].bairro,
-        cep: cepRequest.data[0].cep
-      })
+    try {
+      const cepRequest = await findCep.get(`${fields.uf}/${fields.city}/${fields.street}/json/`)
+      if (cepRequest.data.length !== 0 && fields.uf && fields.city && fields.street) {
+        setFields({
+          uf: cepRequest.data[0].uf,
+          city: cepRequest.data[0].localidade,
+          street: cepRequest.data[0].logradouro,
+          neighborhood: cepRequest.data[0].bairro,
+          cep: cepRequest.data[0].cep
+        })
 
-      window.alert(`
-        CEP: ${cepRequest.data[0].cep}
-        Município: ${cepRequest.data[0].localidade}
-        Logradouro: ${cepRequest.data[0].logradouro}
-        Bairro: ${cepRequest.data[0].bairro}`)
+        window.alert(`
+          CEP: ${cepRequest.data[0].cep}
+          Município: ${cepRequest.data[0].localidade}
+          Logradouro: ${cepRequest.data[0].logradouro}
+          Bairro: ${cepRequest.data[0].bairro}`)
+      } else {
+        toast.error('Houve algum erro, revise os dados', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        })
+      }
+    } catch (error) {
+      toast.error('Houve algum erro, revise os dados', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
     }
   }
 
@@ -101,7 +125,6 @@ export default function RenderCep() {
   }
 
   function formDisabled() {
-    console.log('aaa')
     if (!fields.uf) {
       return true
     } else {
@@ -111,6 +134,7 @@ export default function RenderCep() {
 
   return (
     <>
+      <ToastContainer />
       <div className='find-cep-container'>
         <Header />
         <Breadcrumb>
