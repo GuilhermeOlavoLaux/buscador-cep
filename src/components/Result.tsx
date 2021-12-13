@@ -69,7 +69,7 @@ export default function Result() {
         </>
       )
     } else {
-      const variavel = loading ? <h1>O CEP digitado não existe, tente novamente</h1> : <p> </p>;
+      const variavel = loading ? <p> </p> : <h1>O CEP digitado não existe, tente novamente</h1>;
 
       return variavel
     }
